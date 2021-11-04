@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour
     private float jumpForce = 5;
     private float friction = 0.1f;
 
-    private bool grounded;
+    public bool grounded;
 
     private bool walking
     {
@@ -49,6 +49,8 @@ public class Movement : MonoBehaviour
     void Start()
     {
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        Settings.allAudioSources.Add(audioSource);
+        audioSource.volume = Settings.volume;
     }
 
     private void FixedUpdate()
@@ -118,7 +120,8 @@ public class Movement : MonoBehaviour
 
     private bool isGrounded()
     {
-        bool newGrounded = (Physics2D.OverlapBox(transform.position, new Vector2(0.424f, 0.001f), 0f, groundLayer) != null);
+        bool newGrounded = (Physics2D.OverlapBox(transform.position, new Vector2(0.424f, 0.01f), 0f, groundLayer) != null);
+        Debug.DrawLine(transform.position, transform.position + Vector3.up * 0.02f);
 
         if(newGrounded != grounded)
         {
@@ -128,8 +131,9 @@ public class Movement : MonoBehaviour
             {
                 float horizontalAxis = MyInput.getAxisHorizontal();
 
-                if (horizontalAxis == 0) playerRigidBody.velocity = Vector2.zero;
-                else if ((horizontalAxis < 0 && playerRigidBody.velocity.x > 0) || horizontalAxis > 0 && playerRigidBody.velocity.x < 0) playerRigidBody.velocity = Vector2.zero;
+                playerRigidBody.velocity = Vector2.zero;
+                //if (horizontalAxis == 0) playerRigidBody.velocity = Vector2.zero;
+                //else if ((horizontalAxis < 0 && playerRigidBody.velocity.x > 0) || horizontalAxis > 0 && playerRigidBody.velocity.x < 0) playerRigidBody.velocity = Vector2.zero;
 
                 animator.transform.rotation = transform.rotation;
                 animator.transform.position = transform.position;

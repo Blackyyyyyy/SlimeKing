@@ -4,6 +4,24 @@ using UnityEngine;
 
 public static class Settings
 {
+    public static float volume
+    {
+        get { return volumeStorage; }
+        set
+        {
+            volumeStorage = value;
+            foreach(AudioSource s in allAudioSources)
+            {
+                s.volume = value;
+            }
+
+            PlayerPrefs.SetFloat("Volume", value);
+        }
+    }
+    private static float volumeStorage = 1;
+
+    public static List<AudioSource> allAudioSources = new List<AudioSource>();
+
     #region Keyboard & Mouse
 
     public static KeyCode left = KeyCode.A;
@@ -15,19 +33,9 @@ public static class Settings
     public static KeyCode preciseScroll = KeyCode.LeftShift;
     
     public static KeyCode lookUp = KeyCode.Q;
+    public static KeyCode accept = KeyCode.E;
 
     public static KeyCode pause = KeyCode.Escape;
 
     #endregion
-    
-
-    public static float fuseTime
-    {
-        get { return fuseTimeStorage; }
-        set { fuseTimeStorage = Mathf.Round(Mathf.Clamp(value, minFuseTime, maxFuseTime) * 100f) / 100f; }
-    }
-    private static float fuseTimeStorage = 0.5f;
-
-    public readonly static float minFuseTime = 0.5f;
-    public readonly static float maxFuseTime = 4;
 }

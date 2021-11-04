@@ -25,6 +25,8 @@ public class LevelManager : MonoBehaviour
     }
     private Level activeLevelStorage;
 
+    private bool gameEnded = false;
+
     void Start()
     {
         current = this;
@@ -38,6 +40,9 @@ public class LevelManager : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (gameEnded) return;
+
+        if (player.position.y > 165) endGame(); 
         activeLevel = levels[getCurrentLevelID()];
         currentLevel = getCurrentLevelID();
     }
@@ -45,5 +50,13 @@ public class LevelManager : MonoBehaviour
     private int getCurrentLevelID()
     {
         return Mathf.Clamp((int)Mathf.Round(player.position.y / 12), 0, levels.Length - 1);
+    }
+
+    private void endGame()
+    {
+        gameEnded = true;
+        Timer.current.stopped = true;
+        GameMemory.getPlayer().GetComponent<Rigidbody2D>().simulated = false;
+        GetComponent<GameEnding>().transitionToEnd();
     }
 }

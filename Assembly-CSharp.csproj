@@ -54,13 +54,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Player\MiscControls.cs" />
+    <Compile Include="Assets\Scripts\Menu\VolumeSlider.cs" />
     <Compile Include="Assets\Scripts\Player\BodyHitSounds.cs" />
+    <Compile Include="Assets\Scripts\Menu\MenuManager.cs" />
+    <Compile Include="Assets\Scripts\Menu\Button.cs" />
     <Compile Include="Assets\Scripts\TNT\TNT.cs" />
     <Compile Include="Assets\Scripts\Level\Level.cs" />
     <Compile Include="Assets\Scripts\Player\AdjustFuseTime.cs" />
     <Compile Include="Assets\Scripts\TNT\Explosion.cs" />
+    <Compile Include="Assets\Scripts\Finish.cs" />
     <Compile Include="Assets\Scripts\MyInput.cs" />
     <Compile Include="Assets\Scripts\MySystem.cs" />
+    <Compile Include="Assets\Scripts\TNT\FuseDisplayPosition.cs" />
     <Compile Include="Assets\Scripts\Level\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Settings.cs" />
     <Compile Include="Assets\Scripts\Player\Movement.cs" />
@@ -68,8 +73,9 @@
     <Compile Include="Assets\Scripts\GameData.cs" />
     <Compile Include="Assets\Scripts\Level\Block.cs" />
     <Compile Include="Assets\Scripts\GameMemory.cs" />
-    <Compile Include="Assets\Scripts\Menu\QuitButton.cs" />
-    <Compile Include="Assets\Scripts\Finish.cs" />
+    <Compile Include="Assets\Scripts\Menu\Timer.cs" />
+    <Compile Include="Assets\Scripts\LudwigDialoge.cs" />
+    <Compile Include="Assets\Scripts\Menu\GameEnding.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Fonts\Press_Start_2P\OFL.txt" />

@@ -9,6 +9,7 @@ public class Explosion : MonoBehaviour
 
     void Start()
     {
+        GetComponent<AudioSource>().volume = Settings.volume;
         startTime = Time.time;
     }
 

@@ -10,20 +10,20 @@ public class AdjustFuseTime : MonoBehaviour
 
     private void Start()
     {
-        fuseTimeDisplay.minValue = Settings.minFuseTime;
-        fuseTimeDisplay.maxValue = Settings.maxFuseTime;
+        fuseTimeDisplay.minValue = TNT.minFuseTime;
+        fuseTimeDisplay.maxValue = TNT.maxFuseTime;
 
-        fuseTimeDisplay.value = Settings.fuseTime;
-        valueDisplay.text = Settings.fuseTime.ToString();
+        fuseTimeDisplay.value = TNT.fuseTime;
+        valueDisplay.text = TNT.fuseTime.ToString();
     }
 
     void Update()
     {
         if (Input.GetAxis("Mouse ScrollWheel") == 0) return;
-        Settings.fuseTime += Input.GetAxis("Mouse ScrollWheel") * 2
+        TNT.fuseTime += Input.GetAxis("Mouse ScrollWheel") * 2
                           * (Input.GetKey(Settings.preciseScroll).ToByte() * -0.75f + 1);
 
-        fuseTimeDisplay.value = Settings.fuseTime;
-        valueDisplay.text = Settings.fuseTime.ToString();
+        fuseTimeDisplay.value = TNT.fuseTime;
+        valueDisplay.text = TNT.fuseTime.ToString();
     }
 }

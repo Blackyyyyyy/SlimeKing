@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MiscControls : MonoBehaviour
 {
-    public GameObject pauseMenu;
+    public MenuManager menuManager;
 
     private LevelManager levelManager;
 
@@ -31,7 +31,7 @@ public class MiscControls : MonoBehaviour
         if(Input.GetKeyDown(Settings.pause))
         {
             GameMemory.current.paused = !GameMemory.current.paused;
-            pauseMenu.SetActive(GameMemory.current.paused);
+            menuManager.gotoMenu(GameMemory.current.paused.ToByte());
         }
     }
 }

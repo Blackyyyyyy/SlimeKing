@@ -13,11 +13,19 @@ public static class GameData
 
         PlayerPrefs.SetFloat("VelocityX", player.GetComponent<Rigidbody2D>().velocity.x);
         PlayerPrefs.SetFloat("VelocityY", player.GetComponent<Rigidbody2D>().velocity.y);
+
+        Timer.current.saveTime();
     }
 
     public static void load()
     {
         GameMemory.getPlayer().position = new Vector2(PlayerPrefs.GetFloat("PositionX"), PlayerPrefs.GetFloat("PositionY"));
         GameMemory.getPlayer().GetComponent<Rigidbody2D>().velocity = new Vector2(PlayerPrefs.GetFloat("VelocityX"), PlayerPrefs.GetFloat("VelocityY"));
+
+        Settings.volume = PlayerPrefs.GetFloat("Volume");
+
+        Timer.current.setTimer(PlayerPrefs.GetFloat("Seconds"),
+                               PlayerPrefs.GetInt("Minutes"),
+                               PlayerPrefs.GetInt("Hours"));
     }
 }

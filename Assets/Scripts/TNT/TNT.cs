@@ -5,29 +5,48 @@ using UnityEngine;
 
 public class TNT : MonoBehaviour
 {
-    public Transform explosionPrefab;
+    public static float fuseTime
+    {
+        get { return fuseTimeStorage; }
+        set { fuseTimeStorage = Mathf.Round(Mathf.Clamp(value, minFuseTime, maxFuseTime) * 100f) / 100f; }
+    }
+    private static float fuseTimeStorage = 0.5f;
 
-    private float fuseTime;
+    public readonly static float minFuseTime = 0.5f;
+    public readonly static float maxFuseTime = 4;
+
+
+    public Transform explosionPrefab;
+    public SpriteRenderer strengthIndicator; //Explosion Strength Indicator
+    public TextMesh fuseDisplay;
+
+    private float localFuseTime;
     private float startTime;
+
+    private float timeLeft;
 
     private float explosionRadius = 2;
 
     private float playerPositionOffset = 0.3f;
-
-    private float minExplosionForce = 1f;
-    private float maxExplosionForce = 11f;
+    
+    private float maxExplosionForce = 12f;
 
     public bool exploding = false;
 
     void Start()
     {
         startTime = Time.time;
-        fuseTime = Settings.fuseTime;
+        localFuseTime = fuseTime;
+        strengthIndicator.transform.localScale *= explosionRadius;
     }
     
     void Update()
     {
-        if(startTime + fuseTime <= Time.time) explode();
+        timeLeft = startTime + localFuseTime - Time.time;
+        fuseDisplay.text = Mathf.Clamp(Mathf.Round(timeLeft * 100) * 0.01f, 0.01f, localFuseTime).ToString();
+        if(timeLeft <= 0) explode();
+        
+        strengthIndicator.color = new Color(1, 1, 1, Mathf.Sin(Time.time * 6) * 0.05f + 0.14f);
     }
 
     public void explode()
@@ -42,9 +61,9 @@ public class TNT : MonoBehaviour
         {
             Rigidbody2D playerRigid = GameMemory.getPlayer().GetComponent<Rigidbody2D>();
 
-            float forceMultiplier = 1 - (distanceToPlayer / explosionRadius);
-
-            playerRigid.AddForce((playerPosition - (Vector2)transform.position).normalized * (forceMultiplier * maxExplosionForce + minExplosionForce), ForceMode2D.Impulse);
+            float forceMultiplier = Mathf.Ceil((1 - (distanceToPlayer / explosionRadius)) * 4) / 4f;
+            
+            playerRigid.AddForce((playerPosition - (Vector2)transform.position).normalized * (forceMultiplier * maxExplosionForce), ForceMode2D.Impulse);
         }
 
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
@@ -55,13 +74,6 @@ public class TNT : MonoBehaviour
     {
         Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
-        foreach(Collider2D c in collisions)
-        {
-            TNT tnt = c.GetComponent<TNT>();
-            if(tnt != null)
-            {
-                Destroy(c.gameObject);
-            }
-        }
+        foreach(Collider2D c in collisions) if(c.tag == "TNT") Destroy(c.gameObject);
     }
 }
