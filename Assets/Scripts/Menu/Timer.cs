@@ -16,10 +16,14 @@ public class Timer : MonoBehaviour
 
     public bool stopped = false;
 
+    private void Awake()
+    {
+        current = this;
+    }
+
     void Start()
     {
         startTime = Time.time;
-        current = this;
     }
     
     void Update()

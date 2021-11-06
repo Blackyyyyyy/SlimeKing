@@ -36,7 +36,7 @@ public class GameMemory : MonoBehaviour
         current = this;
 
         firstBootCheck();
-        GameData.load();
+        StartCoroutine("invokeLoad");
 
         InvokeRepeating("invokeSave", saveInterval, saveInterval);
     }
@@ -59,6 +59,12 @@ public class GameMemory : MonoBehaviour
     private void invokeSave()
     {
         GameData.save();
+    }
+
+    private IEnumerator invokeLoad()
+    {
+        yield return new WaitForEndOfFrame();
+        GameData.load();
     }
 
     private void firstBootCheck()

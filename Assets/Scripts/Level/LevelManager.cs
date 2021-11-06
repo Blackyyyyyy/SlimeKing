@@ -42,7 +42,7 @@ public class LevelManager : MonoBehaviour
     {
         if (gameEnded) return;
 
-        if (player.position.y > 165) endGame(); 
+        if (player.position.y > 162) endGame(); 
         activeLevel = levels[getCurrentLevelID()];
         currentLevel = getCurrentLevelID();
     }

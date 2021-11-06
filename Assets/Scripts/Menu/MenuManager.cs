@@ -18,18 +18,22 @@ public class MenuManager : MonoBehaviour
 
     private GameObject[] allMenus;
 
-    private void Start()
+    private void Awake()
     {
         current = this;
+    }
 
+    private void Start()
+    {
         allMenus = new GameObject[transform.childCount];
+        Settings.allAudioSources.Add(GetComponent<AudioSource>());
 
-        for(int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             allMenus[i] = transform.GetChild(i).gameObject;
         }
 
-        foreach(GameObject menu in allMenus) menu.SetActive(false);
+        foreach (GameObject menu in allMenus) menu.SetActive(false);
 
         gotoMenu(0);
     }
@@ -43,8 +47,13 @@ public class MenuManager : MonoBehaviour
 
     public void gotoMenu(int index)
     {
-        if(activeMenu != null) activeMenu.SetActive(false);
+        if (activeMenu != null) activeMenu.SetActive(false);
         activeMenuStorage = allMenus[index];
-        if(activeMenu != null) activeMenu.SetActive(true);
+        if (activeMenu != null) activeMenu.SetActive(true);
+    }
+
+    public void playButtonSound()
+    {
+        GetComponent<AudioSource>().Play();
     }
 }

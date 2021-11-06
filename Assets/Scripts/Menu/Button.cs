@@ -14,11 +14,13 @@ public class Button : MonoBehaviour
 
     public void gotoMenu(int index)
     {
+        menuManager.playButtonSound();
         menuManager.gotoMenu(index);
     }
 
     public void resetGame()
     {
+        menuManager.playButtonSound();
         GameMemory.respawnPlayer();
         Timer.current.reset();
         GameData.save();
@@ -27,19 +29,30 @@ public class Button : MonoBehaviour
 
     public void resetScene()
     {
+        menuManager.playButtonSound();
         resetGame();
+        Settings.allAudioSources = new List<AudioSource>();
         SceneManager.LoadScene("Level");
     }
 
-    public void quitGame()
+    public void quitGame(bool save)
     {
-        GameData.save();
+        menuManager.playButtonSound();
+        if(save) GameData.save();
         Application.Quit();
     }
 
     public void unpauseGame()
     {
+        menuManager.playButtonSound();
         GameMemory.current.paused = false;
         menuManager.gotoMenu(0);
+    }
+
+    public void gotoScene(string scene)
+    {
+        menuManager.playButtonSound();
+        Settings.allAudioSources = new List<AudioSource>();
+        SceneManager.LoadScene(scene);
     }
 }

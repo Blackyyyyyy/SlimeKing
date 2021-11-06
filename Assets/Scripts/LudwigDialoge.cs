@@ -19,6 +19,8 @@ public class LudwigDialoge : MonoBehaviour
 
     private void Start()
     {
+        Settings.allAudioSources.Add(GetComponent<AudioSource>());
+
         switch(dialogGroupID)
         {
             case 0:
@@ -62,6 +64,8 @@ public class LudwigDialoge : MonoBehaviour
     {
         if(inProximity && Input.GetKeyDown(Settings.accept))
         {
+            GetComponent<AudioSource>().Play();
+
             if (inDialog && dialogID + 1 < dialog.Count)
             {
                 textField.text = dialog[++dialogID];
