@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - BodyHitSounds
     - Button
     - Explosion
+    - FullscreenToggle
     - FuseDisplayPosition
     - GameEnding
     - GameMemory
@@ -53,11 +54,15 @@ ScriptsOnlyBuild:
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.Dropdown
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Mask
     - UnityEngine.UI.Outline
+    - UnityEngine.UI.ScrollRect
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
+    - UnityEngine.UI.Toggle
   sceneClasses:
     Assets/Scenes/Level.unity:
     - Class: 1
@@ -109,6 +114,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1490}
     - Class: 114
+      Script: {instanceID: 1676}
+    - Class: 114
       Script: {instanceID: 1748}
     - Class: 114
       Script: {instanceID: 1962}
@@ -147,17 +154,25 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3804}
     - Class: 114
-      Script: {instanceID: 4492}
+      Script: {instanceID: 4324}
     - Class: 114
-      Script: {instanceID: 4846}
+      Script: {instanceID: 4490}
     - Class: 114
-      Script: {instanceID: 4930}
+      Script: {instanceID: 4548}
     - Class: 114
-      Script: {instanceID: 5342}
+      Script: {instanceID: 4750}
     - Class: 114
-      Script: {instanceID: 5416}
+      Script: {instanceID: 4844}
     - Class: 114
-      Script: {instanceID: 5604}
+      Script: {instanceID: 4928}
+    - Class: 114
+      Script: {instanceID: 5340}
+    - Class: 114
+      Script: {instanceID: 5414}
+    - Class: 114
+      Script: {instanceID: 5602}
+    - Class: 114
+      Script: {instanceID: 23126}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -224,6 +239,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1490}
     - Class: 114
+      Script: {instanceID: 1676}
+    - Class: 114
       Script: {instanceID: 2280}
     - Class: 114
       Script: {instanceID: 2624}
@@ -239,6 +256,14 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3370}
     - Class: 114
       Script: {instanceID: 3490}
+    - Class: 114
+      Script: {instanceID: 4324}
+    - Class: 114
+      Script: {instanceID: 4548}
+    - Class: 114
+      Script: {instanceID: 4750}
+    - Class: 114
+      Script: {instanceID: 23126}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -884,6 +909,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: FabrikSolver2D
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: FullscreenToggle
   platform: 19
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
