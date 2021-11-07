@@ -30,7 +30,7 @@ public class GameEnding : MonoBehaviour
             transitioning = false;
             GameMemory.current.paused = true;
             MenuManager.current.gotoMenu(5);
-            endMessage.text = "Thank you for playing my game!\nYour time:\n" + Timer.current.getTimeAsString();
+            endMessage.text = "Thank you for playing my game!\nYour time:\n" + Timer.current.getTimeAsString() + "\n\nFeel free to tweet your best time at me!\n@Infinityyv on Twitter.";
         }
     }
 }

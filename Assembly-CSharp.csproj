@@ -64,7 +64,6 @@
     <Compile Include="Assets\Scripts\Level\Level.cs" />
     <Compile Include="Assets\Scripts\Player\AdjustFuseTime.cs" />
     <Compile Include="Assets\Scripts\TNT\Explosion.cs" />
-    <Compile Include="Assets\Scripts\Finish.cs" />
     <Compile Include="Assets\Scripts\MyInput.cs" />
     <Compile Include="Assets\Scripts\MySystem.cs" />
     <Compile Include="Assets\Scripts\TNT\FuseDisplayPosition.cs" />

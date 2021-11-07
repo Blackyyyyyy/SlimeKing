@@ -10,9 +10,9 @@ public class Timer : MonoBehaviour
     
     private float startTime;
 
-    private float seconds;
-    private int minutes;
-    private int hours;
+    private float seconds = 0;
+    private int minutes = 0;
+    private int hours = 0;
 
     public bool stopped = false;
 
@@ -55,7 +55,7 @@ public class Timer : MonoBehaviour
 
     public void setTimer(float seconds, int minutes, int hours)
     {
-        startTime = -seconds;
+        startTime -= seconds;
         this.minutes = minutes;
         this.hours = hours;
     }
